@@ -24,6 +24,7 @@ class MovieController extends Controller
             "title" => "Seat",
             "time" => "$time" . '.00',
             "date" => $currentTime->format('d M'),
+            "seat" => [],
             "movie" => Movie::find($id)
         ]);
     }

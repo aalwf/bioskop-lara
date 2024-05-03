@@ -26,7 +26,7 @@
         @endfor
     </div>
     <div class="flex items-center justify-center mt-12">
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400">Selesai Memilih</button>
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 disabled:bg-indigo-300 disabled:cursor-not-allowed" id="confirm" disabled>Selesai Memilih</button>
     </div>
     
     <!-- Main modal -->
@@ -37,7 +37,7 @@
                 <!-- Modal header -->
                 <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600">
                     <h3 class="text-lg font-semibold text-gray-900 dark:text-white">
-                        Create New Product
+                        Confirm Of Order
                     </h3>
                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="crud-modal">
                         <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 14">
@@ -47,35 +47,35 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-5">
-                    <div class="grid gap-4 mb-4 grid-cols-2">
-                        <div class="col-span-2">
-                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Name</label>
-                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Price</label>
-                            <input type="number" name="price" id="price" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="$2999" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Category</label>
-                            <select id="category" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                <option selected="">Select category</option>
-                                <option value="TV">TV/Monitors</option>
-                                <option value="PC">PC</option>
-                                <option value="GA">Gaming/Console</option>
-                                <option value="PH">Phones</option>
-                            </select>
-                        </div>
-                        <div class="col-span-2">
-                            <label for="description" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Product Description</label>
-                            <textarea id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write product description here"></textarea>                    
-                        </div>
+                <form class="p-4 md:p-8">
+                    <div class="grid gap-4 mb-4">
+                        <form action="" method="post">
+                            <div class="flex">
+                                <label class="font-bold w-6/12">Movie</label>
+                                <h1>{{ $movie->name }}</h1>
+                                <input type="text" name="movie" value="{{ $movie->name }}" class="hidden">
+                            </div>
+                            <div class="flex">
+                                <label class="font-bold w-6/12">Time</label>
+                                <h1>{{ $time }}</h1>
+                                <input type="text" name="time" value="{{ $time }}" class="hidden">
+                            </div>
+                            <div class="flex">
+                                <label class="font-bold w-6/12">Seat</label>
+                                <h1 id="seat-selected-h1"></h1>
+                                <input type="text" name="seat" value="" class="hidden seat-selected">
+                            </div>
+                            <div class="flex">
+                                <label class="font-bold w-6/12">Studio</label>
+                                <h1>{{ $movie->name }}</h1>
+                                <input type="text" name="movie" value="{{ $movie->name }}" class="hidden">
+                            </div>
+                            <button type="submit" class="text-white inline-flex text-center items-center bg-indigo-500 hover:bg-indigo-400 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-500 dark:focus:ring-indigo-400">
+                                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
+                                Make an Order
+                            </button>
+                        </form>
                     </div>
-                    <button type="submit" class="text-white inline-flex items-center bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                        <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                        Add new product
-                    </button>
                 </form>
             </div>
         </div>
@@ -86,14 +86,48 @@
         // Get the button
         const buttons = document.querySelectorAll(".seat");
 
+        // Get the Confirm btn
+        const confirmBtn = document.getElementById("confirm");
+
+        // Get Seat Selected
+        const seatSelected = document.querySelector(".seat-active");
+        const seatSelectedH1 = document.getElementById("seat-selected-h1");
+
         // Loop melalui setiap tombol
         for (let i = 0; i < buttons.length; i++) {
             // Tambahkan event listener untuk setiap tombol
             buttons[i].addEventListener("click", function() {
-                // Tambahkan kelas 'active' ke tombol yang diklik
-                console.log(this.value);
+                // const seat = () => (!buttons[i].classList.contains("seat-active")) ? buttons[i].value : '';
                 this.classList.toggle("seat-active");
+                if (buttons[i].classList.contains("seat-active")) {
+                    confirmBtn.disabled = false;
+
+                    const seat = [];
+                    const isSeat = buttons[i].value;
+                    seat.push(isSeat)
+                    
+                    console.log(seat);
+                } else if (!buttons.classList.contains("seat-active")) {
+                    confirmBtn.disabled = true;
+                    const seat = [];
+                }
             });
         }
+
+        // buttons.forEach((button) => {
+        //     // Tambahkan event listener untuk setiap tombol
+        //     button.addEventListener("click", function() {
+        //         this.classList.toggle("seat-active");
+        //         if (button.selected) {
+        //             const seat = [];
+        //             let isSeat = button.value;
+        //             console.log(isSeat);
+        //             // seat.push(isSeat);
+        //             // document.getElementById("seat-selected-h1").innerHTML = seat;
+        //         } else {
+        //             confirmBtn.disabled = false;
+        //         }
+        //     })
+        // });
     </script>
 @endsection
