@@ -6,9 +6,9 @@
     
         @foreach ($movies as $movie)
         <div class="bg-gray-100 dark:bg-gray-900 shadow shadow-gray-300 dark:shadow-gray-800 my-5 flex gap-4 rounded group">
-            <div class="w-32 bg-cover bg-no-repeat bg-center rounded-l rounded-r-3xl shadow-lg dark:border-r-2 dark:border-indigo-500" style="background-image: url({{ url('movies/' . $movie->image) }})"></div>
+            <div class="w-32 bg-cover bg-no-repeat bg-center rounded-l rounded-r-3xl shadow-lg dark:border-r-2 dark:border-indigo-500" style="background-image: url({{ asset('storage/movies/' . $movie->image) }})"></div>
             <div class="p-3 text-gray-700 dark:text-gray-300 w-8/12">
-                <h1 class="text-xl font-bold group-hover:text-indigo-500">{{ $movie->name }}</h1>
+                <h1 class="text-xl truncate font-bold group-hover:text-indigo-500">{{ $movie->name }}</h1>
                 <div class="grid grid-cols-2 mt-2 gap-17">
                     <ul class="text-gray-500 dark:text-gray-400 leading-5">
                         <li>Studio</li>
