@@ -28,4 +28,9 @@ class MovieController extends Controller
             "movie" => Movie::find($id)
         ]);
     }
+
+    public function store(Request $request)
+    {
+        return $request;
+    }
 }

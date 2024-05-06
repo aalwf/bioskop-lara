@@ -47,7 +47,7 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form action="" method="POST" class="p-4 md:p-8">
+                <form action="/seat/order" method="POST" class="p-4 md:p-8">
                     @csrf
                     <div class="grid gap-4 mb-4">
                         <div class="flex">
@@ -74,12 +74,12 @@
                         <div class="flex">
                             <label class="w-6/12">Ticket Price</label>
                             <h1 id="price"></h1>
-                            <input type="hidden" name="ticket_price" id="ticket-price">
+                            <input type="hidden" name="price" id="price-input">
                         </div>
                         <div class="flex">
                             <label class="w-6/12">Service Fees</label>
                             <h1 id="service-fees"></h1>
-                            <input type="hidden" name="service_fees" id="service-fees">
+                            <input type="hidden" name="service_fees" id="service-fees-input">
                         </div>
                         <hr class="my-2">
                         <div class="flex">
@@ -88,15 +88,15 @@
                             <input type="hidden" name="entire_pay" id="entire-pay-input">
                         </div>
                         <hr class="my-2">
-                        <div class="flex items-center justify-center">
-                            <label class="font-bold w-6/12">Amount Pay</label>
+                        <div class="flex">
+                            <label class="font-bold w-6/12">Amount Paid</label>
                             <div>
                                 <input type="number" id="amount-paid" name="amount_paid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Amount" required>
                                 <h1 id="change">Rp. 0</h1>
                                 <input type="hidden" id="change-input" name="change">
                             </div>
                         </div>
-                        <button type="submit" class="inline bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 disabled:bg-indigo-300 disabled:cursor-not-allowed" name="confirm">Make An Order</button>
+                        <button type="submit" class="inline bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 disabled:bg-indigo-300 disabled:cursor-not-allowed">Make An Order</button>
                     </div>
                 </form>
             </div>
@@ -147,13 +147,13 @@
                     price.textContent = `Rp. ${ticketPrice} x ${seatsSelected.length}`;
                     serviceFees.textContent = `Rp. ${serviceFee} x ${seatsSelected.length}`;
                     entirePay.textContent = `Rp. ${totalPrice + totalServiceFee}`;
+                    // Menyimpan data harga
+                    document.getElementById("price-input").value = `Rp. ${ticketPrice} x ${seatsSelected.length}`;
+                    document.getElementById("service-fees-input").value = `Rp. ${serviceFee} x ${seatsSelected.length}`;
+                    document.getElementById("entire-pay-input").value = totalPrice + totalServiceFee;
                     // Mengambil seat yang dipilih
                     seatSelectedH1.textContent = selectedSeatsText;
-                    seatSelected.value = selectedSeatsText;
-                    // Menyimpan data harga
-                    document.getElementById("ticket-price").value = ticketPrice;
-                    document.getElementById("service-fees").value = serviceFee;
-                    document.getElementById("entire-pay-input").value = totalPrice + totalServiceFee;
+                    document.getElementById('selected-seats').value = selectedSeatsText;
                 } else {
                     confirmBtn.disabled = true;
                     seatSelectedH1.textContent = "No seat selected";
