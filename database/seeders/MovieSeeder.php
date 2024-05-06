@@ -59,7 +59,7 @@ class MovieSeeder extends Seeder
             'genre_id' => 1,
             'image' => 'the-godfather.jpg',
             'minutes' => 175,
-            'director' => 'Francis Ford Coppola',
+            'director' => 'F. Ford Coppola',
             'studio_name' => 'Lily',
             'studio_capacity' => 72
         ]);

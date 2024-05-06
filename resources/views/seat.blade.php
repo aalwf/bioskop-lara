@@ -26,7 +26,7 @@
         @endfor
     </div>
     <div class="flex items-center justify-center mt-12">
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 disabled:bg-indigo-300 disabled:cursor-not-allowed" id="confirm" disabled>Selesai Memilih</button>
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 disabled:bg-indigo-300 disabled:cursor-not-allowed" id="confirm">Selecting</button>
     </div>
     
     <!-- Main modal -->
@@ -47,34 +47,56 @@
                     </button>
                 </div>
                 <!-- Modal body -->
-                <form class="p-4 md:p-8">
+                <form action="" method="POST" class="p-4 md:p-8">
+                    @csrf
                     <div class="grid gap-4 mb-4">
-                        <form action="" method="post">
-                            <div class="flex">
-                                <label class="font-bold w-6/12">Movie</label>
-                                <h1>{{ $movie->name }}</h1>
-                                <input type="text" name="movie" value="{{ $movie->name }}" class="hidden">
+                        <div class="flex">
+                            <label class="w-6/12">Movie</label>
+                            <h1>{{ $movie->name }}</h1>
+                            <input type="hidden" name="movie" value="{{ $movie->name }}">
+                        </div>
+                        <div class="flex">
+                            <label class="w-6/12">Time</label>
+                            <h1>{{ $time }}</h1>
+                            <input type="hidden" name="time" value="{{ $time }}">
+                        </div>
+                        <div class="flex">
+                            <label class="w-6/12">Seat</label>
+                            <h1 id="seat-selected-h1"></h1>
+                            <input type="hidden" name="seat" id="selected-seats" class="seat-selected">
+                        </div>
+                        <div class="flex">
+                            <label class="w-6/12">Studio</label>
+                            <h1>{{ $movie->studio_name }}</h1>
+                            <input type="hidden" name="studio" value="{{ $movie->studio_name }}">
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex">
+                            <label class="w-6/12">Ticket Price</label>
+                            <h1 id="price"></h1>
+                            <input type="hidden" name="ticket_price" id="ticket-price">
+                        </div>
+                        <div class="flex">
+                            <label class="w-6/12">Service Fees</label>
+                            <h1 id="service-fees"></h1>
+                            <input type="hidden" name="service_fees" id="service-fees">
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex">
+                            <label class="font-bold w-6/12">Entire Pay</label>
+                            <h1 id="entire-pay" class="font-bold"></h1>
+                            <input type="hidden" name="entire_pay" id="entire-pay-input">
+                        </div>
+                        <hr class="my-2">
+                        <div class="flex items-center justify-center">
+                            <label class="font-bold w-6/12">Amount Pay</label>
+                            <div>
+                                <input type="number" id="amount-paid" name="amount_paid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Amount" required>
+                                <h1 id="change">Rp. 0</h1>
+                                <input type="hidden" id="change-input" name="change">
                             </div>
-                            <div class="flex">
-                                <label class="font-bold w-6/12">Time</label>
-                                <h1>{{ $time }}</h1>
-                                <input type="text" name="time" value="{{ $time }}" class="hidden">
-                            </div>
-                            <div class="flex">
-                                <label class="font-bold w-6/12">Seat</label>
-                                <h1 id="seat-selected-h1"></h1>
-                                <input type="text" name="seat" value="" class="hidden seat-selected">
-                            </div>
-                            <div class="flex">
-                                <label class="font-bold w-6/12">Studio</label>
-                                <h1>{{ $movie->name }}</h1>
-                                <input type="text" name="movie" value="{{ $movie->name }}" class="hidden">
-                            </div>
-                            <button type="submit" class="text-white inline-flex text-center items-center bg-indigo-500 hover:bg-indigo-400 focus:ring-4 focus:outline-none focus:ring-indigo-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-500 dark:focus:ring-indigo-400">
-                                <svg class="me-1 -ms-1 w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 5a1 1 0 011 1v3h3a1 1 0 110 2h-3v3a1 1 0 11-2 0v-3H6a1 1 0 110-2h3V6a1 1 0 011-1z" clip-rule="evenodd"></path></svg>
-                                Make an Order
-                            </button>
-                        </form>
+                        </div>
+                        <button type="submit" class="inline bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 disabled:bg-indigo-300 disabled:cursor-not-allowed" name="confirm">Make An Order</button>
                     </div>
                 </form>
             </div>
@@ -93,41 +115,73 @@
         const seatSelected = document.querySelector(".seat-active");
         const seatSelectedH1 = document.getElementById("seat-selected-h1");
 
-        // Loop melalui setiap tombol
-        for (let i = 0; i < buttons.length; i++) {
-            // Tambahkan event listener untuk setiap tombol
-            buttons[i].addEventListener("click", function() {
-                // const seat = () => (!buttons[i].classList.contains("seat-active")) ? buttons[i].value : '';
-                this.classList.toggle("seat-active");
-                if (buttons[i].classList.contains("seat-active")) {
-                    confirmBtn.disabled = false;
+        // Get Price
+        const price = document.getElementById("price");
 
-                    const seat = [];
-                    const isSeat = buttons[i].value;
-                    seat.push(isSeat)
-                    
-                    console.log(seat);
-                } else if (!buttons.classList.contains("seat-active")) {
+        // Get Service Fees
+        const serviceFees = document.getElementById("service-fees");
+
+        // Get Entire Pay
+        const entirePay = document.getElementById("entire-pay");
+
+        confirmBtn.disabled = true;
+
+        buttons.forEach(button => {
+            button.addEventListener("click", function() {
+                this.classList.toggle("seat-active");
+                const seatsSelected = document.querySelectorAll(".seat-active");
+                if (seatsSelected.length > 0) {
+                    confirmBtn.disabled = false;
+                    let selectedSeatsText = "";
+                    seatsSelected.forEach((seat, index) => {
+                        selectedSeatsText += seat.value;
+                        if (index < seatsSelected.length - 1) {
+                        selectedSeatsText += ", ";
+                        }
+                    });
+                    // Menghitung harga
+                    const ticketPrice = 50000;
+                    const serviceFee = 2000;
+                    const totalPrice = ticketPrice * seatsSelected.length;
+                    const totalServiceFee = serviceFee * seatsSelected.length;
+                    price.textContent = `Rp. ${ticketPrice} x ${seatsSelected.length}`;
+                    serviceFees.textContent = `Rp. ${serviceFee} x ${seatsSelected.length}`;
+                    entirePay.textContent = `Rp. ${totalPrice + totalServiceFee}`;
+                    // Mengambil seat yang dipilih
+                    seatSelectedH1.textContent = selectedSeatsText;
+                    seatSelected.value = selectedSeatsText;
+                    // Menyimpan data harga
+                    document.getElementById("ticket-price").value = ticketPrice;
+                    document.getElementById("service-fees").value = serviceFee;
+                    document.getElementById("entire-pay-input").value = totalPrice + totalServiceFee;
+                } else {
                     confirmBtn.disabled = true;
-                    const seat = [];
+                    seatSelectedH1.textContent = "No seat selected";
                 }
             });
-        }
+        });
 
-        // buttons.forEach((button) => {
-        //     // Tambahkan event listener untuk setiap tombol
-        //     button.addEventListener("click", function() {
-        //         this.classList.toggle("seat-active");
-        //         if (button.selected) {
-        //             const seat = [];
-        //             let isSeat = button.value;
-        //             console.log(isSeat);
-        //             // seat.push(isSeat);
-        //             // document.getElementById("seat-selected-h1").innerHTML = seat;
-        //         } else {
-        //             confirmBtn.disabled = false;
-        //         }
-        //     })
-        // });
+        // Event listener untuk perubahan jumlah yang dibayarkan
+        const amountPaidInput = document.getElementById("amount-paid");
+        const changeH1 = document.getElementById("change");
+        const changeInput = document.getElementById("change-input");
+
+        amountPaidInput.addEventListener("input", function() {
+            const seatsSelected = document.querySelectorAll(".seat-active");
+            if (seatsSelected.length > 0) {
+                // Menghitung total pembayaran
+                const ticketPrice = 50000;
+                const serviceFee = 2000;
+                const totalPrice = ticketPrice * seatsSelected.length;
+                const totalServiceFee = serviceFee * seatsSelected.length;
+                const totalPayment = totalPrice + totalServiceFee;
+                
+                // Menghitung kembalian
+                const amountPaid = parseFloat(this.value) || 0;
+                const change = amountPaid - totalPayment;
+                changeH1.textContent = "Rp. " + change.toLocaleString();
+                changeInput.value = change;
+            }
+        });
     </script>
 @endsection
