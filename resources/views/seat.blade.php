@@ -79,7 +79,7 @@
                         <div class="flex">
                             <label class="w-6/12">Service Fees</label>
                             <h1 id="service-fees"></h1>
-                            <input type="hidden" name="service_fees" id="service-fees-input">
+                            <input type="hidden" name="service_fees" value="" id="service-fees-input">
                         </div>
                         <hr class="my-2">
                         <div class="flex">
@@ -91,7 +91,7 @@
                         <div class="flex">
                             <label class="font-bold w-6/12">Amount Paid</label>
                             <div>
-                                <input type="number" id="amount-paid" name="amount_paid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Amount" required>
+                                <input type="number" id="amount-paid" name="amount_paid" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Amount" required autofocus>
                                 <h1 id="change">Rp. 0</h1>
                                 <input type="hidden" id="change-input" name="change">
                             </div>
@@ -153,7 +153,8 @@
                     document.getElementById("entire-pay-input").value = totalPrice + totalServiceFee;
                     // Mengambil seat yang dipilih
                     seatSelectedH1.textContent = selectedSeatsText;
-                    document.getElementById('selected-seats').value = selectedSeatsText;
+                    const z = document.getElementById('selected-seats').value = selectedSeatsText.split(', ');
+                    console.log(z);
                 } else {
                     confirmBtn.disabled = true;
                     seatSelectedH1.textContent = "No seat selected";
