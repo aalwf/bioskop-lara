@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Purchases;
 
 class PurchaseTickets extends Model
 {
@@ -12,11 +13,6 @@ class PurchaseTickets extends Model
     public function purchase()
     {
         return $this->belongsTo(Purchases::class);
-    }
-
-    public function movie()
-    {
-        return $this->belongsTo(Movie::class);
     }
 
     protected $guarded = ['id'];

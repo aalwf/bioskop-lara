@@ -27,7 +27,8 @@ class MovieController extends Controller
             "time" => "$time" . ':00',
             "date" => $currentTime->format('d M'),
             "seat" => [],
-            "movie" => Movie::find($id)
+            "movie" => Movie::find($id),
+            "history" => PurchaseTickets::all()
         ]);
     }
 

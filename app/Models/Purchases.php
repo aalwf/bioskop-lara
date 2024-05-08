@@ -14,6 +14,11 @@ class Purchases extends Model
         return $this->belongsTo(Movie::class);
     }
 
+    public function tickets()
+    {
+        return $this->hasMany(PurchaseTickets::class);
+    }
+
     protected $guarded = [
         'id'
     ];
