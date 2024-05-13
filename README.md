@@ -38,6 +38,7 @@ Field work practice report
 
 `$ php artisan migrate:fresh`
 `$ php artisan db:seed MovieSeeder`
+`$ php artisan storage:link`
 
 ## Run Application
 
