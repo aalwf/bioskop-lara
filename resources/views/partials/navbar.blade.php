@@ -1,13 +1,14 @@
 <nav class="bg-gray-100 dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-800 text-gray-500">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <a href="https://flowbite.com/" class="flex items-center space-x-3 rtl:space-x-reverse md:order-1">
             <!-- Logo -->
-            <div class="text-indigo-500 md:order-1">
+            <div class="text-indigo-500">
                 <!-- Heroicon - Chip Outline -->
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24">
                     <path d="M18 11c0-.959-.68-1.761-1.581-1.954C16.779 8.445 17 7.75 17 7c0-2.206-1.794-4-4-4-1.516 0-2.822.857-3.5 2.104C8.822 3.857 7.516 3 6 3 3.794 3 2 4.794 2 7c0 .902.312 1.726.817 2.396A1.993 1.993 0 0 0 2 11v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-2.637l4 2v-7l-4 2V11zm-5-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2zM6 5c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2z"></path>
                 </svg>
             </div>
+            <h1 class="self-center text-xl text-indigo-500 font-bold whitespace-nowrap dark:text-indigo-400">Bioskop Lara</h1>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
             @auth
@@ -64,7 +65,12 @@
                 <a href="/history" class="block py-2 px-3 text-gray-100 rounded md:bg-transparent {{ ($title === "History") ? "bg-indigo-500 md:text-indigo-500 md:p-0 md:dark:text-indigo-500" : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 md:dark:hover:text-indigo-500 dark:text-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-100 md:dark:hover:bg-transparent' }}" aria-current="page">History</a>
             </li>
             <li>
-                <a href="#" class="py-2 px-3 text-gray-100 rounded md:bg-transparent {{ ($title === "Seat" || $title === "Order") ? "block bg-indigo-500 md:text-indigo-500 md:p-0 md:dark:text-indigo-500" : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 md:dark:hover:text-indigo-500 dark:text-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-100 md:dark:hover:bg-transparent hidden' }}" aria-current="page">{{ ($title === "Seat") ? "Seat" : ($title === "Order" ? "Detail Order" : "Seat") }}</a>
+                <a href="#" class="py-2 px-3 text-gray-100 rounded md:bg-transparent {{ ($title === "Seat" || $title === "Order" || $title === "History Detail") ? "block bg-indigo-500 md:text-indigo-500 md:p-0 md:dark:text-indigo-500" : 'text-gray-900 hover:bg-gray-100 md:hover:bg-transparent md:hover:text-indigo-500 md:p-0 md:dark:hover:text-indigo-500 dark:text-gray-100 dark:hover:bg-gray-700 dark:hover:text-gray-100 md:dark:hover:bg-transparent hidden' }}" aria-current="page">{{ 
+                    ($title === "Seat") ? "Seat" : 
+                        (($title === "Order") ? "Detail Order" : 
+                            (($title === "History Detail") ? "History Detail" : 
+                                "Seat")) 
+                }}</a>
             </li>
         </ul>
         </div>

@@ -18,15 +18,16 @@ Route::middleware('guest')->group(function () {
 Route::post('/register', [RegisterController::class, 'store']);
 Route::post('/login', [LoginController::class, 'authenticate']);
 
-Route::middleware('auth')->group(function () {
-    Route::get('/', [MovieController::class, 'index']);
+Route::get('/', [MovieController::class, 'index']);
 
+Route::middleware('auth')->group(function () {
     Route::get('/seat/{time}/{id}', [MovieController::class, 'seat']);
     Route::post('/seat/order', [MovieController::class, 'store']);
 
-    Route::get('print/{id}', [PrintController::class, 'print']);
+    Route::get('/print/{id}', [PrintController::class, 'print']);
 
-    Route::get('history', [HistoryController::class, 'index']);
+    Route::get('/history', [HistoryController::class, 'index']);
+    Route::get('/detail/{id}', [HistoryController::class, 'show']);
     Route::get('/history/delete/{id}', [HistoryController::class, 'destroy']);
 
     Route::post('/logout', [LoginController::class, 'logout']);

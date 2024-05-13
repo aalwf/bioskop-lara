@@ -38,10 +38,13 @@
             @endforeach
 
         </div>
-        <div class="w-full mt-10">
-            <button class="w-full text-white font-semibold bg-indigo-700 hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 rounded text-sm px-5 py-2.5 text-center dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800" type="button" onclick="window.print()">
+        <div class="w-full mt-10 flex flex-col gap-2 print:hidden">
+            <button class="w-full bg-indigo-500 hover:bg-indigo-400 text-white p-2 rounded" type="button" onclick="window.print()">
                 Print Now
             </button>
+            <a href="/" class="w-full text-center shadow hover:bg-indigo-300 hover:text-white text-indigo-500 p-2 rounded">
+                Back
+            </a>
         </div>
 
     <script>
