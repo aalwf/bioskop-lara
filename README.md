@@ -27,7 +27,7 @@ Field work practice report
     DB_CONNECTION=sqlite
     # DB_HOST=127.0.0.1
     # DB_PORT=3306
-    # DB_DATABASE=lara_cinema
+    # DB_DATABASE=bioskop_lara
     # DB_USERNAME=root
     # DB_PASSWORD=
 ```
