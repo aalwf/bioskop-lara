@@ -23,12 +23,12 @@
                         <li>{{ $movie->director }}</li>
                     </ul>
                 </div>
-                <hr class="my-2">
+                <hr class="my-2 dark:border-slate-500">
                 <div class="flex justify-between">
-                    <a href="/seat/10/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer">10.00</a>
-                    <a href="/seat/13/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer">13.00</a>
-                    <a href="/seat/16/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer">16.00</a>
-                    <a href="/seat/19/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer">19.00</a>
+                    <a href="/seat/10/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer dark:bg-gray-800">10.00</a>
+                    <a href="/seat/13/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer dark:bg-gray-800">13.00</a>
+                    <a href="/seat/16/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer dark:bg-gray-800">16.00</a>
+                    <a href="/seat/19/{{ $movie->id }}" class="bg-gray-200 p-1 rounded text-sm shadow-md text-indigo-600 hover:bg-indigo-400 hover:text-gray-100 hover:cursor-pointer dark:bg-gray-800">19.00</a>
                 </div>
             </div>
         </div>

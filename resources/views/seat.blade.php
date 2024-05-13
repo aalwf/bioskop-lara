@@ -2,8 +2,8 @@
 
 @section('main')
     <div class="flex items-center justify-center flex-col">
-        <h1 class="text-2xl font-bold text-indigo-500">{{ $movie->name }} ({{ $movie->studio_name }})</h1>
-        <p class="text-lg">{{ $date }} <span class="mx-5">|</span> {{ $time }}</p>
+        <h1 class="text-2xl font-bold text-indigo-500 dark:text-indigo-400">{{ $movie->name }} ({{ $movie->studio_name }})</h1>
+        <p class="text-lg dark:text-gray-300">{{ $date }} <span class="mx-5">|</span> {{ $time }}</p>
     </div>
     <div class="grid md:grid-cols-2 lg:grid-cols-2 sm:grid-rows-2 sm:grid-cols-1 mt-5 gap-4">
         <?php $i = "A" ?>
@@ -26,7 +26,7 @@
         @endfor
     </div>
     <div class="flex items-center justify-center mt-12">
-        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 disabled:bg-indigo-300 disabled:cursor-not-allowed" id="confirm">Selecting</button>
+        <button data-modal-target="crud-modal" data-modal-toggle="crud-modal" type="button" class="bg-indigo-500 text-gray-100 py-2 px-3 rounded shadow-md hover:bg-indigo-400 dark:hover:bg-indigo-800 disabled:bg-indigo-300 disabled:cursor-not-allowed disabled:dark:bg-opacity-40 disabled:dark:bg-gray-300 disabled:dark:text-indigo-200" id="confirm">Selecting</button>
     </div>
     
     <!-- Main modal -->
@@ -49,7 +49,7 @@
                 <!-- Modal body -->
                 <form action="/seat/order" method="POST" class="p-4 md:p-8">
                     @csrf
-                    <div class="grid gap-4 mb-4">
+                    <div class="grid gap-4 mb-4 dark:text-gray-100">
                         <div class="flex">
                             <label class="w-6/12">Movie</label>
                             <h1>{{ $movie->name }}</h1>

@@ -11,7 +11,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 
 </head>
-<body>
+<body class="bg-white dark:bg-slate-800">
 
     @include('partials.navbar')
 
