@@ -7,6 +7,7 @@ use App\Http\Controllers\PrintController;
 use App\Http\Controllers\HistoryController;
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ChangePasswordController;
 
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\RegisterController;
@@ -26,6 +27,9 @@ Route::get('/', [MovieController::class, 'index']);
 Route::middleware('auth')->group(function () {
     Route::get('/page/profile', [ProfileController::class, 'index']);
     Route::post('/page/profile', [ProfileController::class, 'update']);
+
+    Route::get('/page/change-password', [ChangePasswordController::class, 'index'])->name('update-password');
+    Route::post('/page/change-password', [ChangePasswordController::class, 'update'])->name('update-password');
 
     Route::get('/seat/{time}/{id}', [MovieController::class, 'seat']);
     Route::post('/seat/order', [MovieController::class, 'store']);

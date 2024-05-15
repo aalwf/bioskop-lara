@@ -31,7 +31,7 @@
                         <a href="/page/profile" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-indigo-400">Profile</a>
                     </li>
                     <li>
-                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-indigo-400">Change Password</a>
+                        <a href="/page/change-password" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-indigo-400">Change Password</a>
                     </li>
                     </ul>
                     <div class="py-2">
