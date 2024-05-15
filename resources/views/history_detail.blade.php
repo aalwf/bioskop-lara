@@ -3,7 +3,7 @@
 @section('main')
     <div class="w-full max-w-xl mx-auto p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-500 dark:border-gray-400">
         <div class="flex items-center justify-between mb-4">
-            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Latest Customers</h5>
+            <h5 class="text-xl font-bold leading-none text-gray-900 dark:text-white">Detail History</h5>
             <a href="#" class="text-sm font-medium text-indigo-600 hover:underline dark:text-indigo-500">
                 Print
             </a>
