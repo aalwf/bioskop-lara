@@ -22,13 +22,18 @@ class MovieController extends Controller
     public function seat($time, $id)
     {
         $currentTime = Carbon::now();
+
+        $history = PurchaseTickets::whereHas('purchase', function ($query) use ($id, $time) {
+            $query->where('movie_id', $id)->where('time', $time . ':00');
+        })->get(["seat"]);
+
         return view('seat', [
             "title" => "Seat",
             "time" => "$time" . ':00',
             "date" => $currentTime->format('d M'),
             "seat" => [],
             "movie" => Movie::find($id),
-            "history" => PurchaseTickets::all()
+            "history" => $history
         ]);
     }
 

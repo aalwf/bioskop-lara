@@ -10,15 +10,35 @@
         @for($r = 0; $r < $movie->studio_capacity / 12; $r++)
             <div class="flex flex-nowrap items-center justify-evenly">
                 @for($c = 1; $c <= 6; $c++)
-                <button class="seat" name="seat" value="{{ $i }}0{{ $c }}">
-                    {{ $i }}0{{ $c }}
-                </button>
+                    @php 
+                        $col1 = $i . ($c < 10 ? '0' . $c : $c);
+                        $disabled = false;
+                        foreach ($history as $ticket) {
+                            if (in_array($col1, explode(',', $ticket->seat))) {
+                                $disabled = true;
+                                break;
+                            }
+                        }
+                    @endphp
+                    <button class="seat {{ $disabled ? 'seat-disabled' : '' }}" {{ $disabled ? 'disabled' : '' }} name="seat" value="{{ $col1 }}">
+                        {{ $col1 }}
+                    </button>
                 @endfor
             </div>
             <div class="flex flex-nowrap items-center justify-evenly">
                 @for($c = 7; $c <= 12; $c++)
-                    <button class="seat" name="seat" value="{{ $i }}{{ ($c > 9 ? $c : '0' . $c) }}">
-                        {{ $i }}{{ ($c > 9 ? $c : '0' . $c) }}
+                    @php 
+                        $col2 = $i . ($c > 9 ? $c : '0' . $c);
+                        $disabled = false;
+                        foreach ($history as $ticket) {
+                            if (in_array($col2, explode(',', $ticket->seat))) {
+                                $disabled = true;
+                                break;
+                            }
+                        }
+                    @endphp
+                    <button class="seat {{ $disabled ? 'seat-disabled' : '' }}" {{ $disabled ? 'disabled' : '' }} name="seat" value="{{ $col2 }}">
+                        {{ $col2 }}
                     </button>
                 @endfor
             </div>
@@ -103,29 +123,41 @@
         </div>
     </div> 
   
+    {{-- <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const history = @json($history->pluck('seat')->toArray()).split(',');
+            history.forEach
+            console.log(history);
+            const seats = document.querySelectorAll(".seat");
+            seats.forEach(seat => {
+                if (history.includes(seat.value)) {
+                    seat.disabled = true;
+                    seat.classList.add('seat-disabled');
+                }
+            });
+        });
+    </script> --}}
 
     <script>
         // Get the button
         const buttons = document.querySelectorAll(".seat");
-
+    
         // Get the Confirm btn
         const confirmBtn = document.getElementById("confirm");
-
+    
         // Get Seat Selected
         const seatSelected = document.querySelector(".seat-active");
         const seatSelectedH1 = document.getElementById("seat-selected-h1");
-
+    
         // Get Price
         const price = document.getElementById("price");
-
+    
         // Get Service Fees
         const serviceFees = document.getElementById("service-fees");
-
+    
         // Get Entire Pay
         const entirePay = document.getElementById("entire-pay");
-
-        confirmBtn.disabled = true;
-
+    
         buttons.forEach(button => {
             button.addEventListener("click", function() {
                 this.classList.toggle("seat-active");
@@ -136,7 +168,7 @@
                     seatsSelected.forEach((seat, index) => {
                         selectedSeatsText += seat.value;
                         if (index < seatsSelected.length - 1) {
-                        selectedSeatsText += ", ";
+                            selectedSeatsText += ", ";
                         }
                     });
                     // Menghitung harga
@@ -161,12 +193,12 @@
                 }
             });
         });
-
+    
         // Event listener untuk perubahan jumlah yang dibayarkan
         const amountPaidInput = document.getElementById("amount-paid");
         const changeH1 = document.getElementById("change");
         const changeInput = document.getElementById("change-input");
-
+    
         amountPaidInput.addEventListener("input", function() {
             const seatsSelected = document.querySelectorAll(".seat-active");
             if (seatsSelected.length > 0) {
@@ -184,5 +216,5 @@
                 changeInput.value = change;
             }
         });
-    </script>
+    </script>    
 @endsection
