@@ -27,7 +27,7 @@
         <div class="flex flex-col items-center pb-10">
             <div class="relative w-40 h-40 mb-3 rounded-3xl shadow-lg group">
                 <div class="relative w-full h-full overflow-hidden rounded-3xl">
-                    <img class="absolute bg-cover w-full bg-center" src="{{ asset('profile/' . auth()->user()->image) }}" alt="User Image"/>
+                    <img class="absolute bg-cover w-full bg-center" src="{{ asset('storage/profile/' . auth()->user()->image) }}" alt="User Image"/>
                     <img id="preview" class="relative w-full bg-contain bg-center z-30 hidden" src="" alt="User Image"/>
                     <div class="hidden absolute w-full h-full bg-[rgba(0,0,0,0.5)] group-hover:flex items-center justify-center gap-4">
                         <label for="file_input" class="text-indigo-200 text-3xl font-bold hover:text-indigo-400">
@@ -35,7 +35,7 @@
                         </label>
     
                         <label for="npm-install-copy-button" class="sr-only">Label</label>
-                        <input id="npm-install-copy-button" type="text" class="hidden" value="{{ asset('profile/' . auth()->user()->image) }}" disabled readonly>
+                        <input id="npm-install-copy-button" type="text" class="hidden" value="{{ asset('storage/profile/' . auth()->user()->image) }}" disabled readonly>
                         <button data-copy-to-clipboard-target="npm-install-copy-button" data-tooltip-target="tooltip-copy-npm-install-copy-button" type="button" class="text-indigo-200 text-3xl font-bold hover:text-indigo-400">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="currentColor" viewBox="0 0 24 24"><path d="M8.465 11.293c1.133-1.133 3.109-1.133 4.242 0l.707.707 1.414-1.414-.707-.707c-.943-.944-2.199-1.465-3.535-1.465s-2.592.521-3.535 1.465L4.929 12a5.008 5.008 0 0 0 0 7.071 4.983 4.983 0 0 0 3.535 1.462A4.982 4.982 0 0 0 12 19.071l.707-.707-1.414-1.414-.707.707a3.007 3.007 0 0 1-4.243 0 3.005 3.005 0 0 1 0-4.243l2.122-2.121z"></path><path d="m12 4.929-.707.707 1.414 1.414.707-.707a3.007 3.007 0 0 1 4.243 0 3.005 3.005 0 0 1 0 4.243l-2.122 2.121c-1.133 1.133-3.109 1.133-4.242 0L10.586 12l-1.414 1.414.707.707c.943.944 2.199 1.465 3.535 1.465s2.592-.521 3.535-1.465L19.071 12a5.008 5.008 0 0 0 0-7.071 5.006 5.006 0 0 0-7.071 0z"></path></svg>
                         </button>
